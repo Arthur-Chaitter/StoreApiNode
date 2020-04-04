@@ -5,13 +5,16 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 
-const route = router.get('/', (req,res,next) => {
-    res.status(200).send({
-        title: "Hello World!",
-        version: "1.0.0"
-    });
-});
+//carregar rotas
+const indexRoute = require('./routes/index-route');
+const productRoute = require('./routes/product-route');
 
-app.use('/', route);
+app.use(express.json());
+
+
+
+app.use('/', indexRoute);
+app.use('/products', productRoute);
+
 
 module.exports = app;
